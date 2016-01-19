@@ -265,7 +265,7 @@
 		    };
 
 		    function routeChangeHandler(event, nextRoute) {
-		    	if (nextRoute.$$route && nextRoute.$$route.requireToken) {
+		    	if (nextRoute && nextRoute.requireToken) {
 	                if (!accessToken.get()) {
 	                	event.preventDefault();
 	                	$window.sessionStorage.setItem('oauthRedirectRoute', $location.path());
@@ -310,7 +310,7 @@
 				scope.$on('oauth2:authExpired', function() {
 					scope.signedIn = false;
 				});
-				$rootScope.$on('$routeChangeStart', routeChangeHandler);
+				$rootScope.$on('$stateChangeStart', routeChangeHandler);
 			}
 
 			scope.$watch('clientId', function(value) { init(); });
